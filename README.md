@@ -8,7 +8,7 @@
 - `pnpm run prod`
 
 # Running
-- `pnpm run dev` , open at `http://localhost:3000`
+- `pnpm run dev` , open at `http://localhost:3011`
 
 # Credits
 - [@rizkialtino](https://github.com/rizkialtino) for UI/UX design
@@ -16,5 +16,7 @@
 
 # Notes
 Search : https://nominatim.openstreetmap.org/search?q=Grand%20Indonesia&format=json
+
 Geocode : https://nominatim.openstreetmap.org/search?q=Grand%20Indonesia&format=json&addressdetails=1
+
 TileLayer : https://mt0.google.com/vt/lyrs=s&hl=id&x=409&y=266&z=9

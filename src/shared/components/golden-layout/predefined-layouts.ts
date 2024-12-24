@@ -34,7 +34,7 @@ const miniRowConfig: LayoutConfig = {
                     },
                     {
                         type: "component",
-                        title: "Riwayat",
+                        title: "Lokasi",
                         header: {
                             show: "top",
                         },
@@ -93,7 +93,7 @@ const miniRowConfig: LayoutConfig = {
                         type: ItemType.row,
                         content: [
                             {
-                                title: "CO2",
+                                title: "CO²",
                                 header: { show: "top", popout: false },
                                 type: "component",
                                 reorderEnabled: true,

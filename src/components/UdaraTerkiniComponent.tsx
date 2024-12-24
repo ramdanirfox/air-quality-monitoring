@@ -7,6 +7,7 @@ export default function UdaraTerkiniComponent() {
   return (
     <div class="t-center text-white">
         <div>Udara Terkini</div>
+        
     </div>
   );
 }

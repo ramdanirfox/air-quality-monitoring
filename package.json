@@ -30,6 +30,11 @@
   },
   "dependencies": {
     "@kobalte/core": "^0.13.7",
-    "golden-layout": "^2.6.0"
+    "echarts": "^5.5.1",
+    "echarts-solid": "^0.2.0",
+    "golden-layout": "^2.6.0",
+    "maplibre-gl": "^4.7.1",
+    "solid-maplibre": "^0.4.1",
+    "solid-motionone": "^1.0.2"
   }
 }

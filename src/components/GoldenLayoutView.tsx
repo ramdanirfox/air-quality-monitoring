@@ -38,6 +38,10 @@ export const GoldenLayoutView: Component<any> = () => {
         (window as any).goldenLayoutApiTestApp = app;
         app.start();
         fnLoadPredefinedLayout();
+        // setTimeout(() => {
+        //     app.start();
+        //     fnLoadPredefinedLayout();
+        // }, 1000);
     });
 
     const fnLoadPredefinedLayout = () => {
@@ -138,7 +142,7 @@ export const GoldenLayoutView: Component<any> = () => {
                     </div>
                 </section>
             </section>
-            <div class="layout-container-wrapper pt-8 pb-20 px-48 w-full h-[100dvh]">
+            <div class="layout-container-wrapper px-2 py-2 md:pt-8 md:pb-20 md:px-48 w-full h-[100dvh]">
                 <section id="layoutContainer">
                 </section>
             </div>
