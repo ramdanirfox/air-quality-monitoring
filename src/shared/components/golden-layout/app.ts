@@ -91,6 +91,9 @@ export class App {
         console.log("[App] JSXes", this.jsxComponents);
         this.solidGoldenFactory.setJsxComponents(this.jsxComponents);
         this.solidGoldenComponentRef = this.solidGoldenFactory.create("solid view"); // WARNING : jsxComponents will not update anymore even after calling this.solidGoldenFactory.setJsxComponents again
+        if (cfg && cfg.hasOwnProperty('useVirtualEventBinding')) {
+            this._useVirtualEventBinding = cfg.useVirtualEventBinding!;
+        }
         const controlsElement = document.querySelector('#controls') as HTMLElement;
         if (controlsElement === null) {
             throw new Error('controlsElement not found');

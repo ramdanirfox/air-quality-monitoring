@@ -51,6 +51,7 @@ p {
 .lm_goldenlayout {
   /* background-color: transparent !important; */
   background-color: transparent;
+  /* backdrop-filter: blur(8px); */
 }
 
 .lm_content {
@@ -58,6 +59,7 @@ p {
   border: none;
   border-radius: 8px;
   border-top-left-radius: 0;
+  backdrop-filter: blur(8px);
 }
 
 .lm_header .lm_tab {
@@ -67,8 +69,17 @@ p {
   border-top-right-radius: 6px;
 }
 
+.lm_header .lm_tab.lm_active {
+  box-shadow: none;
+}
+
+.lm-tab, .lm_controls {
+  backdrop-filter: blur(8px);
+  background-color: #00000044;
+}
+
 .lm_tab.lm_active {
-  color: #AAA;
+  color: #FFF;
 }
 
 /* Golden Layout Fluid Animator */

@@ -2,12 +2,15 @@ import { createSignal } from "solid-js";
 import "./Counter.css";
 import { useSJXContext } from "~/shared/context/SJXContext";
 
-export default function RiwayatComponent() {
+interface ILevelUdaraComponent {
+    jenis: "CO2" | "LPG"
+}
+
+export default function LevelUdaraComponent(props: ILevelUdaraComponent) {
   
   return (
     <div class="t-center text-white">
-        <div>Monitoring Polusi Udara</div>
-        <div>Teknik Elektro</div>
+        <div>Level Udara {props.jenis}</div>
     </div>
   );
 }

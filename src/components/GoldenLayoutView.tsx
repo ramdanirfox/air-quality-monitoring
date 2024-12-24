@@ -4,10 +4,17 @@ import { ComponentBase } from "~/shared/components/golden-layout/component-base"
 
 import "./../shared/styles/golden-layout.css";
 import "golden-layout/dist/css/goldenlayout-base.css";
-import "golden-layout/dist/css/themes/goldenlayout-light-theme.css";
+import "golden-layout/dist/css/themes/goldenlayout-dark-theme.css";
+// import "golden-layout/dist/css/themes/goldenlayout-light-theme.css";
 import Counter from "./Counter";
 import { useSJXContext } from "~/shared/context/SJXContext";
 import YoutubeComponent from "./YoutubeComponent";
+import RiwayatComponent from "./RiwayatComponent";
+import BrandComponent from "./BrandComponent";
+import KesimpulanComponent from "./KesimpulanComponent";
+import PemetaanComponent from "./PemetaanComponent";
+import UdaraTerkiniComponent from "./UdaraTerkiniComponent";
+import LevelUdaraComponent from "./LevelUdaraComponent";
 
 export const GoldenLayoutView: Component<any> = () => {
     const cmpBase = ComponentBase;
@@ -17,13 +24,16 @@ export const GoldenLayoutView: Component<any> = () => {
         console.log("Loaded", cmpBase);
         app = new App(
             [
-                () => <YoutubeComponent />,
-                <h2>Apa Kabar {SJXctx?.ctx.increments.val()}</h2>,
-                // <p>Hey Brohhh</p>
-                () => <Counter />,
-                // <Counter />,
-                // <Counter />
-            ]
+                <BrandComponent />,
+                <RiwayatComponent />,
+                <KesimpulanComponent />,
+                <PemetaanComponent />,
+                <UdaraTerkiniComponent />,
+                <LevelUdaraComponent jenis="CO2" />,
+                <LevelUdaraComponent jenis="LPG" />,
+                () => <YoutubeComponent />
+            ],
+            { useVirtualEventBinding: true }
         );
         (window as any).goldenLayoutApiTestApp = app;
         app.start();
@@ -128,7 +138,7 @@ export const GoldenLayoutView: Component<any> = () => {
                     </div>
                 </section>
             </section>
-            <div class="layout-container-wrapper pt-4 pb-16 px-20 w-full h-[100dvh]">
+            <div class="layout-container-wrapper pt-8 pb-20 px-48 w-full h-[100dvh]">
                 <section id="layoutContainer">
                 </section>
             </div>

@@ -15,18 +15,37 @@ const miniRowConfig: LayoutConfig = {
         type: ItemType.row,
         content: [
             {
-                type: "component",
-                title: "Riwayat",
-                header: {
-                    show: "top",
-                },
-                isClosable: true,
-                reorderEnabled: true,
-                componentType: "solid view",
-                size: '30%',
-                componentState: {
-                    jsxIndex: 1,
-                },
+                type: ItemType.column,
+                size: "30%",
+                content: [
+                    {
+                        type: "component",
+                        title: "Monitoring Udara",
+                        header: {
+                            show: "top",
+                        },
+                        size: "35%",
+                        isClosable: true,
+                        reorderEnabled: true,
+                        componentType: "solid view",
+                        componentState: {
+                            jsxIndex: 0,
+                        },
+                    },
+                    {
+                        type: "component",
+                        title: "Riwayat",
+                        header: {
+                            show: "top",
+                        },
+                        isClosable: true,
+                        reorderEnabled: true,
+                        componentType: "solid view",
+                        componentState: {
+                            jsxIndex: 1,
+                        },
+                    }
+                ]
             },
             {
                 type: ItemType.column,
@@ -51,14 +70,14 @@ const miniRowConfig: LayoutConfig = {
                                 reorderEnabled: true,
                                 componentType: "solid view",
                                 componentState: {
-                                    jsxIndex: 2
+                                    jsxIndex: 3
                                 }
                             }
                         ]
                     },
                     {
                         type: "component",
-                        title: "Solid",
+                        title: "Indeks Kondisi Udara Hari Ini",
                         header: {
                             show: "top",
                         },
@@ -80,7 +99,7 @@ const miniRowConfig: LayoutConfig = {
                                 reorderEnabled: true,
                                 componentType: "solid view",
                                 componentState: {
-                                    jsxIndex: 0
+                                    jsxIndex: 5
                                 }
                             },
                             {
@@ -90,7 +109,7 @@ const miniRowConfig: LayoutConfig = {
                                 reorderEnabled: true,
                                 componentType: "solid view",
                                 componentState: {
-                                    jsxIndex: 2
+                                    jsxIndex: 6
                                 }
                             }
                         ]
