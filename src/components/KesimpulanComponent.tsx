@@ -26,7 +26,7 @@ export default function KesimpulanComponent(props: IKesimpulanCmpProps) {
   })
 
   onCleanup(() => {
-    
+
   });
 
   return (
@@ -45,7 +45,7 @@ export default function KesimpulanComponent(props: IKesimpulanCmpProps) {
         </div>
         <div class="flex flex-col flex-1 text-right">
           {/* <div class="drop-shadow-md">15:30 PM</div> */}
-          <div class="drop-shadow-md">{props.aqiCtx?.ctx.externalDateTimeUTC.val()! && format(parseISO(props.aqiCtx?.ctx.externalDateTimeUTC.val()!), "HH:mm:ss aa")}</div>
+          <div class="drop-shadow-md">{props.aqiCtx?.ctx.externalDateTimeUTC.val()! && format(parseISO(props.aqiCtx?.ctx.externalDateTimeUTC.val()!), "hh:mm:ss aa")}</div>
           <div>
           <Show when={sigRsrcWeather()?.resource.state == "ready" && sigWeather()} fallback={"--"}>
             {(WMO_CODE as any)[sigWeather()?.current.weather_code!] ? (WMO_CODE as any)[sigWeather()?.current.weather_code!].day.description : "--"}

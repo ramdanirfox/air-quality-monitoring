@@ -1,7 +1,7 @@
 # Air Quality Monitoring
 - Monitor CO2 and LPG levels
 
-![image](https://private-user-images.githubusercontent.com/75406656/398270847-d25cb462-f8f7-4f74-b700-b2b7c19dbde1.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzQ5OTQ1NTQsIm5iZiI6MTczNDk5NDI1NCwicGF0aCI6Ii83NTQwNjY1Ni8zOTgyNzA4NDctZDI1Y2I0NjItZjhmNy00Zjc0LWI3MDAtYjJiN2MxOWRiZGUxLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDEyMjMlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQxMjIzVDIyNTA1NFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTdhOGZiYzRjMDMyN2FkZmRhMGJmYmNkYWYzN2QzNTQ0NWZhMmZlM2IyNDlhNDBkODIzOWFlMThjZjQ3YzJmMmYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.olovz34SIzqlW9fwIrKqrWe7_Aa-9g-O_QzlUWikCQQ)
+![image](https://github.com/ramdanirfox/air-quality-monitoring/blob/main/src/public/images/splash.png)
 
 # Building
 - Use NodeJS v22.12.0 and `pnpm` package manager (install it by `npm i -g pnpm`)
