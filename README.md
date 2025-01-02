@@ -1,7 +1,7 @@
 # Air Quality Monitoring
 - Monitor CO2 and LPG levels
 
-![image](https://github.com/ramdanirfox/air-quality-monitoring/blob/main/src/public/images/splash.png)
+![image](https://github.com/ramdanirfox/air-quality-monitoring/blob/main/public/images/splash.png)
 
 # Building
 - Use NodeJS v22.12.0 and `pnpm` package manager (install it by `npm i -g pnpm`)
