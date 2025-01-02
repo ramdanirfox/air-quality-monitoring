@@ -6,6 +6,7 @@ import { AQIIconAddMore } from "~/shared/icons/AQIIconAddMore";
 import { AQIIconCO2 } from "~/shared/icons/AQIIconCO2";
 import { AQIIconLPG } from "~/shared/icons/AQIIconLPG";
 import { DUMMY_LIST_LOCATION } from "~/shared/constants/dummy-constant";
+import { Dialog } from "@kobalte/core/dialog";
 
 export default function RiwayatComponent() {
 
@@ -59,7 +60,31 @@ export default function RiwayatComponent() {
         </div>
         )}
       </For>
-      <Button class="button w-full"><span class="pr-2"><AQIIconAddMore /></span> Tambah Lokasi<span class="pr-12"></span></Button>
+      <Dialog>
+      <Dialog.Trigger class="dialog__trigger">
+      {/* <Button class="button w-full"> */}
+        <span class="pr-2"><AQIIconAddMore /></span> Tambah Lokasi<span class="pr-12"></span>
+      {/* </Button> */}
+      </Dialog.Trigger>
+      <Dialog.Portal>
+        <Dialog.Overlay class="dialog__overlay" />
+        <div class="dialog__positioner">
+          <Dialog.Content class="dialog__content">
+            <div class="dialog__header">
+              <Dialog.Title class="dialog__title">Tambah Lokasi</Dialog.Title>
+              <Dialog.CloseButton class="dialog__close-button">
+                {/* <CrossIcon /> */}x
+              </Dialog.CloseButton>
+            </div>
+            <Dialog.Description class="dialog__description">
+              Kobalte is a UI toolkit for building accessible web apps and design systems with
+              SolidJS. It provides a set of low-level UI components and primitives which can be the
+              foundation for your design system implementation.
+            </Dialog.Description>
+          </Dialog.Content>
+        </div>
+      </Dialog.Portal>
+    </Dialog>
     </div>
   );
 }

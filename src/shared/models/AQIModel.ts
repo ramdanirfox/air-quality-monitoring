@@ -49,3 +49,32 @@ export type IExtTimeAPIByZone = {
   dayOfWeek: string;
   dstActive: boolean;
 }
+
+export interface AQIQualityData {
+  co2: number;
+  location: string;
+  lpg: number;
+  period: string;
+  timestamp_update: number;
+}
+
+export interface AQIQualityDataList {
+  data: AQIQualityData[];
+}
+
+export interface AQIAddLocationRequest {
+  location: string;
+  date: string;
+}
+
+export interface AQILocationData {
+  address: string;
+  google_link: string;
+  latitude: number;
+  longitude: number;
+  name: string;
+}
+
+export interface AQILocationResponse {
+  data: AQILocationData[];
+}
