@@ -74,3 +74,35 @@ export interface AQILocationData {
 }
 
 export type AQILocationResponse =  AQILocationData[];
+
+
+
+export interface OpenMeteoCurrentUnits {
+  time: string;
+  interval: string;
+  temperature_2m: string;
+  apparent_temperature: string;
+  soil_temperature_0cm: string;
+  weather_code: string;
+}
+
+export interface OpenMeteoCurrentValues {
+  time: string;
+  interval: number;
+  temperature_2m: number;
+  apparent_temperature: number;
+  soil_temperature_0cm: number;
+  weather_code: number;
+}
+
+export interface OpenMeteoWeatherModel {
+  latitude: number;
+  longitude: number;
+  generationtime_ms: number;
+  utc_offset_seconds: number;
+  timezone: string;
+  timezone_abbreviation: string;
+  elevation: number;
+  current_units: OpenMeteoCurrentUnits;
+  current: OpenMeteoCurrentValues;
+}

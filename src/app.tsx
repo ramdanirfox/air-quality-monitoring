@@ -6,6 +6,7 @@ import { SJXProvider } from "./shared/context/SJXContext";
 
 import "maplibre-gl/dist/maplibre-gl.css";
 
+import "./shared/styles/ripple.css";
 import "./shared/styles/KobalteButton.css";
 import "./shared/styles/KobalteDialog.css";
 import "./shared/styles/KobalteTextField.css";

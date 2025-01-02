@@ -1,4 +1,4 @@
-import { createEffect, createSignal, For, onCleanup, onMount, Show } from "solid-js";
+import { Accessor, createEffect, createSignal, For, onCleanup, onMount, Show } from "solid-js";
 import "./Counter.css";
 import { SJXContextModel, useSJXContext } from "~/shared/context/SJXContext";
 import { Button } from "@kobalte/core/button";
@@ -9,7 +9,8 @@ import { DUMMY_LIST_LOCATION } from "~/shared/constants/dummy-constant";
 import { Dialog } from "@kobalte/core/dialog";
 import { TextField } from "@kobalte/core/text-field";
 import { AQIAPIEvent, AQIService } from "~/shared/services/AQIServices";
-import { AQILocationData } from "~/shared/models/AQIModel";
+import { AQILocationData, AQILocationResponse } from "~/shared/models/AQIModel";
+import { createTimer, TimeoutSource } from "@solid-primitives/timer";
 
 export interface IRiwayatCmpProps {
   aqiCtx: SJXContextModel | undefined;
@@ -17,6 +18,11 @@ export interface IRiwayatCmpProps {
 
 export default function RiwayatComponent(props: IRiwayatCmpProps) {
   const [sigRsrcLocations, setSigRsrcLocations] = createSignal<AQIAPIEvent>();
+  const [sigTimeDelay, setSigTimeDelay] = createSignal<number | false>(10000); // set to false to stop
+  const timeoutSourceAccessor: Accessor<TimeoutSource> = () => {
+    return sigTimeDelay;
+  };
+  const allData = props.aqiCtx?.ctx.aqiDataAll;
   const fnOnSubmit = (e: SubmitEvent) => {
     e.preventDefault();
     alert(e + "");
@@ -26,6 +32,7 @@ export default function RiwayatComponent(props: IRiwayatCmpProps) {
     setSigRsrcLocations(AQIService.getLocations((loc) => {
       if (loc) {
         console.log("Locations OK", loc);
+        fnEnumerateAQIValues(loc);
       }
       else {
         console.log("Locations", loc);
@@ -33,14 +40,41 @@ export default function RiwayatComponent(props: IRiwayatCmpProps) {
     }));
   });
 
-  const fnUpdateAQIChannel = (loc: AQILocationData) => {
-    AQIService.getAirQuality((loc) => {
-      
+  const fnEnumerateAQIValues = (locs: AQILocationResponse) => {
+    locs.forEach((loc) => {
+      fnUpdateAQIChannel(loc);
+      const timerStop = createTimer(() => {
+        fnUpdateAQIChannel(loc);
+      }, timeoutSourceAccessor(), setInterval);
     });
+    // AQIService.getAirQuality(loc.name, (res) => {
+      
+    // });
+  }
+
+  const fnUpdateAQIChannel = (loc: AQILocationData) => {
+    AQIService.getAirQuality(loc.name, (res) => {
+      const ctxData = props.aqiCtx?.ctx.aqiDataAll.val();
+      ctxData![loc.name] = res;
+      props.aqiCtx?.ctx.aqiDataAll.set(JSON.parse(JSON.stringify(ctxData!)));
+      // console.log("[CTX] Res", props.aqiCtx?.ctx.aqiDataAll.val());
+    });
+  }
+
+  const fnStop = () => {
+    if (sigTimeDelay()) {
+      setSigTimeDelay(false);
+      console.log("Stopped");
+    }
+    else {
+      setSigTimeDelay(10000);
+      console.log("Running");
+    }
   }
 
   onCleanup(() => {
     // alert("OnCleanup Called!");
+    setSigTimeDelay(false);
   });
 
 
@@ -51,7 +85,7 @@ export default function RiwayatComponent(props: IRiwayatCmpProps) {
         }>
         <For each={sigRsrcLocations()?.resource()}>
           {(item) => (
-            <button class="block w-full">
+            <button class="block w-full ripple">
             <div class="flex flex-row aqi-flex-responsive bg-[#D9D9D973] hover:bg-[#D9D9D933] transition duration-300 p-4 rounded-md mb-2 gap-2 w-full">
               <div class="flex flex-col text-left flex-1">
                 <div class="text-xl">
@@ -64,7 +98,7 @@ export default function RiwayatComponent(props: IRiwayatCmpProps) {
                   Index Quality
                 </div>
                 <div class="text-center">
-                  <Button class="button w-full">GOOD?</Button>
+                  <Button class="button w-full" onClick={fnStop}>GOOD?</Button>
                 </div>
               </div>
               <div class="shadow-xl bg-[#D9D9D933] rounded-lg py-4 px-4 flex-1 flex flex-col justify-center relative w-full">
@@ -78,7 +112,7 @@ export default function RiwayatComponent(props: IRiwayatCmpProps) {
                     <AQIIconLPG />
                   </div>
                 </div>
-                <h2 class="text-6xl">?</h2>
+                <h2 class="text-6xl">{allData?.val()[item.name] && allData?.val()[item.name][0] && allData?.val()[item.name][0].lpg}</h2>
                 <h4>PPM</h4>
               </div>
               <div class="shadow-xl bg-[#D9D9D933] rounded-lg py-4 px-4 flex-1 flex flex-col justify-center relative w-full">
@@ -92,7 +126,7 @@ export default function RiwayatComponent(props: IRiwayatCmpProps) {
                     <AQIIconCO2 />
                   </div>
                 </div>
-                <h2 class="text-6xl">?</h2>
+                <h2 class="text-6xl">{allData?.val()[item.name] && allData?.val()[item.name][0] && allData?.val()[item.name][0].co2}</h2>
                 <h4>PPM</h4>
               </div>
             </div>

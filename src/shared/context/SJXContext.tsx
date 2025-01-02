@@ -1,8 +1,11 @@
 import { createSignal, createContext, useContext, Accessor, Setter } from "solid-js";
+import { AQILocationData, AQIQualityDataList } from "../models/AQIModel";
 
 export class SJXStaticModel {
   increments: number = 1;
-  aqiData = [];
+  aqiSelectedLocation: AQILocationData | undefined = undefined;
+  aqiDataSelected: AQIQualityDataList = [];
+  aqiDataAll: {[key: string]: AQIQualityDataList} = {};
   externalInitialDateTimeUTC = "";
   firstNavigatorTime: number = 0;
   lastNavigatorTime: number = 0;

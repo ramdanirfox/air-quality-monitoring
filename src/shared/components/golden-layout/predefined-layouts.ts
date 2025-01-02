@@ -55,7 +55,7 @@ const miniRowConfig: LayoutConfig = {
                         content: [
                             {
                                 title: "Kesimpulan",
-                                header: { show: "top", popout: false },
+                                header: { show: "top", popout: "open in new window" },
                                 type: "component",
                                 reorderEnabled: true,
                                 componentType: "solid view",
@@ -65,7 +65,7 @@ const miniRowConfig: LayoutConfig = {
                             },
                             {
                                 title: "Pemetaan",
-                                header: { show: "top", popout: false },
+                                header: { show: "top", popout: "open in new window" },
                                 type: "component",
                                 reorderEnabled: true,
                                 componentType: "solid view",
@@ -94,7 +94,7 @@ const miniRowConfig: LayoutConfig = {
                         content: [
                             {
                                 title: "CO²",
-                                header: { show: "top", popout: false },
+                                header: { show: "top", popout: "open in new window" },
                                 type: "component",
                                 reorderEnabled: true,
                                 componentType: "solid view",
@@ -104,7 +104,7 @@ const miniRowConfig: LayoutConfig = {
                             },
                             {
                                 title: "LPG",
-                                header: { show: "top", popout: false },
+                                header: { show: "top", popout: "open in new window" },
                                 type: "component",
                                 reorderEnabled: true,
                                 componentType: "solid view",
