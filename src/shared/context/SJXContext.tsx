@@ -2,6 +2,7 @@ import { createSignal, createContext, useContext, Accessor, Setter } from "solid
 
 export class SJXStaticModel {
   increments: number = 1;
+  aqiData = [];
   externalInitialDateTimeUTC = "";
   firstNavigatorTime: number = 0;
   lastNavigatorTime: number = 0;

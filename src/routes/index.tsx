@@ -4,12 +4,15 @@ import { GoldenLayoutView } from "~/components/GoldenLayoutView";
 import { Motion } from "solid-motionone";
 import { AQIService } from "~/shared/services/AQIServices";
 import { useSJXContext } from "~/shared/context/SJXContext";
-import { createSignal, onMount } from "solid-js";
+import { Accessor, createSignal, onCleanup, onMount } from "solid-js";
 import { parseISO } from "date-fns/parseISO";
-import { createTimer } from "@solid-primitives/timer";
+import { createTimer, TimeoutSource } from "@solid-primitives/timer";
 
 export default function Home() {
-
+  const [sigTimeDelay, setSigTimeDelay] = createSignal<number | false>(1000); // set to false to stop
+  const timeoutSourceAccessor: Accessor<TimeoutSource> = () => {
+    return sigTimeDelay;
+  };
   const CMotion = {
     ANIMATION_DURATION_SECOND: 1,
     ANIMATION_PAGE_EXIT: { opacity: 0 },
@@ -23,7 +26,6 @@ export default function Home() {
   onMount(() => {
     // console.log("Timer init");
     const aqiCtx = useSJXContext();
-    const [sigTimeDelay, setSigTimeDelay] = createSignal(1000); // set to false to stop
     setSigTimeDelay(1000);
     AQIService.externalTimingAPI((res) => {
       // console.log("API Timer");
@@ -39,11 +41,14 @@ export default function Home() {
           // console.log("Elapsed : ", elapsedTime, aqiCtx?.ctx.externalDateTimeUTC.val());
           aqiCtx?.ctx.externalDateTimeUTC.set(d.toISOString());
           aqiCtx?.ctx.lastNavigatorTime.set(currentTime);
-        }, sigTimeDelay(), setInterval);
+        }, timeoutSourceAccessor(), setInterval);
       }
     })
   })
 
+  onCleanup(() => {
+    setSigTimeDelay(false);
+  })
 
   return (
     <main class="bg-tampilan-awal bg-cover">

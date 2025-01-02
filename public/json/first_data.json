@@ -1,0 +1,16 @@
+[
+    {
+        "co2": 24.0,
+        "location": "nomaden",
+        "lpg": 49.0,
+        "period": "2024-12-31 12:36:10",
+        "timestamp_update": 0
+    },
+    {
+        "co2": 75.0,
+        "location": "nomaden",
+        "lpg": 12.0,
+        "period": "2024-12-31 12:36:00",
+        "timestamp_update": 0
+    }
+]

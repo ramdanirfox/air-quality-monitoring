@@ -25,7 +25,7 @@ export const GoldenLayoutView: Component<any> = () => {
         app = new App(
             [
                 <BrandComponent />,
-                <RiwayatComponent />,
+                <RiwayatComponent aqiCtx={SJXctx} />,
                 <KesimpulanComponent aqiCtx={SJXctx} />,
                 <PemetaanComponent />,
                 <UdaraTerkiniComponent />,

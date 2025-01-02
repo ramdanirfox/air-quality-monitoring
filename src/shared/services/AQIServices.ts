@@ -19,8 +19,10 @@ export type AQIAPIConfig = {
 
 export const AQIService = {
     aqiCfg: {
-        baseUrl: "http://127.0.0.1:7010"
+        // baseUrl: "http://127.0.0.1:7010"
+        baseUrl: "json"
     } as AQIAPIConfig,
+
     getCfg: function (): AQIAPIConfig {
         return this.aqiCfg;
     },
@@ -45,7 +47,7 @@ export const AQIService = {
     },
     getAirQuality: function (successCallback?: ((data: AQIQualityDataList) => any) | undefined): AQIAPIEvent {
         // const url = `https://worldtimeapi.org/api/ip`;
-        const url = `${this.aqiCfg.baseUrl}/first_data`;
+        const url = `${this.aqiCfg.baseUrl}/first_data${this.aqiCfg.baseUrl == "json" ? ".json" : ""}`;
         const [resource, { mutate, refetch }] = createFetch<any>(
             url, {
             method: "GET"
@@ -61,7 +63,7 @@ export const AQIService = {
     },
     getLocations: function (successCallback?: ((data: AQILocationResponse) => any) | undefined): AQIAPIEvent {
         // const url = `https://worldtimeapi.org/api/ip`;
-        const url = `${this.aqiCfg.baseUrl}/list_location`;
+        const url = `${this.aqiCfg.baseUrl}/list_location${this.aqiCfg.baseUrl == "json" ? ".json" : ""}`;
         const [resource, { mutate, refetch }] = createFetch<any>(
             url, {
             method: "GET"
