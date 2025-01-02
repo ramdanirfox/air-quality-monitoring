@@ -58,9 +58,7 @@ export interface AQIQualityData {
   timestamp_update: number;
 }
 
-export interface AQIQualityDataList {
-  data: AQIQualityData[];
-}
+export type AQIQualityDataList = AQIQualityData[];
 
 export interface AQIAddLocationRequest {
   location: string;
@@ -75,6 +73,4 @@ export interface AQILocationData {
   name: string;
 }
 
-export interface AQILocationResponse {
-  data: AQILocationData[];
-}
+export type AQILocationResponse =  AQILocationData[];

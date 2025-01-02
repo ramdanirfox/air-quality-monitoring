@@ -107,4 +107,11 @@ main {
 
 #layoutContainer>div {
   transition: height 0.3s, width 0.3s, top 0.3s, left 0.3s;
+  container-type: inline-size;
+}
+
+@container (max-width: 384px) {
+  .aqi-flex-responsive {
+    flex-direction: column;
+  }
 }
