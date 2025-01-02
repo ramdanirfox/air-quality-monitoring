@@ -7,7 +7,8 @@ import { SJXProvider } from "./shared/context/SJXContext";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 import "./shared/styles/KobalteButton.css";
-import { Presence } from "solid-motionone";
+import "./shared/styles/KobalteDialog.css";
+// import { Presence } from "solid-motionone";
 
 export default function App() {
   return (

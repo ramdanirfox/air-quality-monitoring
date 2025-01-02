@@ -2,6 +2,10 @@ import { createSignal, createContext, useContext, Accessor, Setter } from "solid
 
 export class SJXStaticModel {
   increments: number = 1;
+  externalInitialDateTimeUTC = "";
+  firstNavigatorTime: number = 0;
+  lastNavigatorTime: number = 0;
+  externalDateTimeUTC = "";
 };
 
 type SJXStaticFields = keyof SJXStaticModel;
@@ -46,7 +50,7 @@ export class SJXContextModel {
     };
   }
 
-  generateStaticSignal<T extends keyof SJXStaticModel>(data: SJXStaticModel, key: SJXStaticFields): [Accessor<SJXStaticModel[T]>, Setter<SJXStaticModel[T]>] {
+  generateStaticSignal<T extends SJXStaticFields>(data: SJXStaticModel, key: T): [Accessor<SJXStaticModel[T]>, Setter<SJXStaticModel[T]>] {
     return createSignal<SJXStaticModel[T]>(data[key]);
   }
 }

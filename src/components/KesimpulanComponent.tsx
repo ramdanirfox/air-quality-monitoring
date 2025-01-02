@@ -1,10 +1,16 @@
 import { createSignal } from "solid-js";
 import "./Counter.css";
-import { useSJXContext } from "~/shared/context/SJXContext";
+import { SJXContextModel, useSJXContext } from "~/shared/context/SJXContext";
 import { AQIIconLPG } from "~/shared/icons/AQIIconLPG";
 import { AQIIconCO2 } from "~/shared/icons/AQIIconCO2";
+import { parseISO } from "date-fns/parseISO";
+import { format } from "date-fns/format";
 
-export default function KesimpulanComponent() {
+export interface IKesimpulanCmpProps { 
+  aqiCtx: SJXContextModel | undefined
+}
+
+export default function KesimpulanComponent(props: IKesimpulanCmpProps) {
 
   return (
     <div class="t-center text-white h-full flex flex-col gap-4 p-4 overflow-auto">
@@ -17,7 +23,8 @@ export default function KesimpulanComponent() {
           30°C
         </div>
         <div class="flex flex-col flex-1 text-right">
-          <div class="drop-shadow-md">15:30 PM</div>
+          {/* <div class="drop-shadow-md">15:30 PM</div> */}
+          <div class="drop-shadow-md">{props.aqiCtx?.ctx.externalDateTimeUTC.val()! && format(parseISO(props.aqiCtx?.ctx.externalDateTimeUTC.val()!), "HH:mm:ss aa")}</div>
           <div>Sunny</div>
         </div>
       </div>

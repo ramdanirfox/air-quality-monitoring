@@ -1,10 +1,22 @@
 import { createSignal, onMount, Show } from "solid-js";
 import "./Counter.css";
 import { useSJXContext } from "~/shared/context/SJXContext";
-import { Map } from "solid-maplibre";
+import { Map, NavigationControl, useMapEffect } from "solid-maplibre";
+
+interface MapFlyerProps {
+  center: [number, number];
+}
+
+function MapFlyer(props: MapFlyerProps) {
+  useMapEffect((map) => {
+    map.flyTo({ center: props.center });
+  });
+  return <></>;
+}
 
 export default function BrandComponent() {
   const [sigShowMap, setSigShowMap] = createSignal(false);
+  const [center, setCenter] = createSignal<[number, number]>([106.82976614124544, -6.2773016456564275]);
   onMount(() => {
     setTimeout(() => {
       setSigShowMap(true);
@@ -15,8 +27,11 @@ export default function BrandComponent() {
   return (
     <div class="t-center text-white flex flex-col h-full p-4">
       <div class="flex-1">
-      <Show when={sigShowMap()}>
+      {/* <Show when={sigShowMap()}> */}
           <Map
+            onload={(map: any) => {
+              console.log("MapLibre", map);
+            }}
             style={{
                 width: "100%",
                 height: "100%",
@@ -70,8 +85,11 @@ export default function BrandComponent() {
               },
               zoom: 16,
             }}
-          />
-        </Show>
+          >
+              <NavigationControl options={{ showCompass: true }} />
+              <MapFlyer center={center()} />
+          </Map>
+        {/* </Show> */}
       </div>
       <div class="flex">
         <div class="flex-1 text-left flex items-center">
