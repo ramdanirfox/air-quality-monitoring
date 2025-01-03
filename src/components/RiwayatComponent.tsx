@@ -61,6 +61,10 @@ export default function RiwayatComponent(props: IRiwayatCmpProps) {
     });
   }
 
+  const fnUpdateSelectedLocation = (loc: AQILocationData) => {
+    props.aqiCtx?.ctx.aqiSelectedLocation.set(loc);
+  }
+
   const fnStop = () => {
     if (sigTimeDelay()) {
       setSigTimeDelay(false);
@@ -85,8 +89,13 @@ export default function RiwayatComponent(props: IRiwayatCmpProps) {
         }>
         <For each={sigRsrcLocations()?.resource()}>
           {(item) => (
-            <button class="block w-full ripple">
-            <div class="flex flex-row aqi-flex-responsive bg-[#D9D9D973] hover:bg-[#D9D9D933] transition duration-300 p-4 rounded-md mb-2 gap-2 w-full">
+            <button class="block w-full ripple" onClick={
+              () => {
+                fnUpdateSelectedLocation(item);
+              }
+            }>
+            <div class={"flex flex-row aqi-flex-responsive bg-[#D9D9D973] hover:bg-[#D9D9D933] transition duration-300 p-4 rounded-md mb-2 gap-2 w-full " +
+                        (props.aqiCtx?.ctx.aqiSelectedLocation.val()?.name == item.name ? "bg-[#D9D9D933]" : "bg-[#AAAAAA33]")}>
               <div class="flex flex-col text-left flex-1">
                 <div class="text-xl">
                   {item.name}

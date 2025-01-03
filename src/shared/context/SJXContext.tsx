@@ -4,7 +4,6 @@ import { AQILocationData, AQIQualityDataList } from "../models/AQIModel";
 export class SJXStaticModel {
   increments: number = 1;
   aqiSelectedLocation: AQILocationData | undefined = undefined;
-  aqiDataSelected: AQIQualityDataList = [];
   aqiDataAll: {[key: string]: AQIQualityDataList} = {};
   externalInitialDateTimeUTC = "";
   firstNavigatorTime: number = 0;

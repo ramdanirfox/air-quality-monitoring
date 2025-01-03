@@ -16,6 +16,8 @@ export interface IKesimpulanCmpProps {
 export default function KesimpulanComponent(props: IKesimpulanCmpProps) {
   const [sigRsrcWeather, setSigRsrcWeather] = createSignal<AQIAPIEvent>();
   const [sigWeather, setSigWeather] = createSignal<OpenMeteoWeatherModel>();
+  const sigAllData = props.aqiCtx?.ctx.aqiDataAll;
+  const sigLoc = props.aqiCtx?.ctx.aqiSelectedLocation;
   onMount(() => {
     setSigRsrcWeather(AQIService.getCurrentWeather((w) => {
       if (w) {
@@ -66,7 +68,7 @@ export default function KesimpulanComponent(props: IKesimpulanCmpProps) {
               <AQIIconLPG />
             </div>
           </div>
-          <h2 class="text-6xl">17</h2>
+          <h2 class="text-6xl">{sigAllData?.val() && sigLoc?.val() && (sigAllData.val())[sigLoc.val()?.name!].length && (sigAllData.val())[sigLoc.val()?.name!][0].lpg}</h2>
           <h4>PPM</h4>
         </div>
         <div class="shadow-xl bg-[#D9D9D933] rounded-lg py-4 px-4 flex-1 flex flex-col justify-center relative">
@@ -80,7 +82,7 @@ export default function KesimpulanComponent(props: IKesimpulanCmpProps) {
               <AQIIconCO2 />
             </div>
           </div>
-          <h2 class="text-6xl">250</h2>
+          <h2 class="text-6xl">{sigAllData?.val() && sigLoc?.val() && (sigAllData.val())[sigLoc.val()?.name!].length && (sigAllData.val())[sigLoc.val()?.name!][0].co2}</h2>
           <h4>PPM</h4>
         </div>
       </div>
