@@ -1,8 +1,12 @@
 import { createSignal, For } from "solid-js";
 import "./Counter.css";
-import { useSJXContext } from "~/shared/context/SJXContext";
+import { SJXContextModel, useSJXContext } from "~/shared/context/SJXContext";
 
-export default function UdaraTerkiniComponent() {
+export interface IUdaraTerkiniCmpProps {
+    aqiCtx?: SJXContextModel | undefined;
+}
+
+export default function UdaraTerkiniComponent( props: IUdaraTerkiniCmpProps ) {
 
   return (
     <div class="t-center text-white p-2 overflow-auto h-full w-full">

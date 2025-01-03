@@ -1,6 +1,6 @@
-import { createSignal, onMount, Show } from "solid-js";
+import { createEffect, createSignal, onMount, Show } from "solid-js";
 import "./Counter.css";
-import { useSJXContext } from "~/shared/context/SJXContext";
+import { SJXContextModel, useSJXContext } from "~/shared/context/SJXContext";
 import { Map, NavigationControl, useMapEffect } from "solid-maplibre";
 
 interface MapFlyerProps {
@@ -14,14 +14,30 @@ function MapFlyer(props: MapFlyerProps) {
   return <></>;
 }
 
-export default function BrandComponent() {
+export interface IPemetaanCmpProps {
+  aqiCtx: SJXContextModel | undefined;
+}
+
+export default function PemetaanComponent(props: IPemetaanCmpProps) {
   const [sigShowMap, setSigShowMap] = createSignal(false);
+  const [sigAddress, setSigAddress] = createSignal("-");
+  const [sigLocName, setSigLocName] = createSignal("Select Location");
   const [center, setCenter] = createSignal<[number, number]>([106.82976614124544, -6.2773016456564275]);
   onMount(() => {
     setTimeout(() => {
       setSigShowMap(true);
     }, 500);
   }); 
+
+  createEffect(() => {
+    const loc = props.aqiCtx?.ctx.aqiSelectedLocation.val();
+    if (loc) {
+      setSigAddress(loc.address);
+      setSigLocName(loc.name);
+      setCenter([loc.latitude, loc.longitude]);
+    }
+  })
+
   // width: "100%",
   //             "aspect-ratio": "calc(16/9)",
   return (
@@ -93,11 +109,12 @@ export default function BrandComponent() {
       </div>
       <div class="flex">
         <div class="flex-1 text-left flex items-center">
-          <div>Nama Tempat</div>
+          <div>{sigLocName()}</div>
         </div>
         <div class="flex-1 text-xs text-right">
-          Jalan Satu<br />
-          Nomor 2A
+          {sigAddress()}
+          {/* Jalan Satu<br />
+          Nomor 2A */}
         </div>
       </div>
     </div>
