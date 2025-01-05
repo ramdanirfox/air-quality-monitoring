@@ -406,11 +406,11 @@ export class App {
 
         if (visible) {
             // componentRootElement.style.display = '';
-            componentRootElement.classList.toggle("lmcustom-hidden");
+            componentRootElement.classList.remove("lmcustom-hidden");
             componentRootElement.style.opacity = '1';
         } else {
             // componentRootElement.style.display = 'none';
-            componentRootElement.classList.toggle("lmcustom-hidden");
+            componentRootElement.classList.add("lmcustom-hidden");
             componentRootElement.style.opacity = '0';
         }
     }
