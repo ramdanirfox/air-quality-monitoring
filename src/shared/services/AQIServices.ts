@@ -15,12 +15,14 @@ export type AQIAPIEvent = {
 
 export type AQIAPIConfig = {
     baseUrl: string;
+    cnt?: number
 }
 
 export const AQIService = {
     aqiCfg: {
         // baseUrl: "http://127.0.0.1:7010"
-        baseUrl: "json"
+        baseUrl: "json",
+        cnt: 1
     } as AQIAPIConfig,
 
     getCfg: function (): AQIAPIConfig {
@@ -61,17 +63,33 @@ export const AQIService = {
             mutate, refetch, resource
         }
     },
-    getRealtimeAirQuality: function (locname: string, successCallback?: ((data: AQIQualityDataList) => any) | undefined): AQIAPIEvent {
-        const url = `${this.aqiCfg.baseUrl}/last_update${this.aqiCfg.baseUrl == "json" ? ".json" : ""}?location=${locname}`;
+    getRealtimeAirQuality: function (locname: string, date: string, successCallback?: ((data: AQIQualityDataList) => any) | undefined): AQIAPIEvent {
+        const url = `${this.aqiCfg.baseUrl}/last_update${this.aqiCfg.baseUrl == "json" ? ".json" : ""}?location=${locname}&date=${date}`;
         const [resource, { mutate, refetch }] = createFetch<any>(
             url, {
-            method: this.aqiCfg.baseUrl == "json" ? "GET" : "POST"
+            method: this.aqiCfg.baseUrl == "json" ? "GET" : "POST",
+            ...(this.aqiCfg.baseUrl !== "json" ? {body: JSON.stringify({ 
+                location: locname,
+                date: date
+             })} : {})
         }, {}, [
             withCatchAll(),
             withAggregation((a: any) => {
                 // randomizeValue
-                if (successCallback) { successCallback(a); }
-                return a;
+                // let b = JSON.parse(JSON.stringify(a));
+                // for (let i = 0; i < this.aqiCfg.cnt!; i++) {
+                //     b.unshift({
+                //         co2: Math.round(Math.random() * 40),
+                //         location: "nomaden",
+                //         lpg: Math.round(Math.random() * 20),
+                //         period: "2024-12-31 12:36:20",
+                //         timestamp_update: "2024-12-31 12:36:20"
+                //     })
+                // }
+                // this.aqiCfg.cnt!++;
+                const b = a;
+                if (successCallback) { successCallback(b); }
+                return b;
             })]);
         return {
             mutate, refetch, resource

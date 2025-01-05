@@ -2,11 +2,12 @@ import * as echartSolid from "echarts-solid";
 import * as ec from "echarts";
 import { onCleanup, onMount } from "solid-js";
 
-interface EChartsProps {
-    echart: echartSolid.EChartsBaseProps;
+interface EChartsCmpProps {
+    xdata: number[];
+    xlabels: string[];
 }
 
-export const EChartsComponent = () => {
+export const EChartsComponent = (props: EChartsCmpProps) => {
     let obs: ResizeObserver;
     let chartInstance: ec.EChartsType;
     let el: HTMLDivElement;
@@ -30,12 +31,14 @@ export const EChartsComponent = () => {
                 chartInstance.setOption({
                     series: [
                         {
-                            data: [120, 200, 150, 80, 70, 110, 130, Math.round((Math.random() * 200))],
+                            // data: [120, 200, 150, 80, 70, 110, 130, Math.round((Math.random() * 200))],
+                            data: props.xdata,
                             name: "ppm"
                         }
                     ],
                     xAxis: {
-                        data: ["15:00:10", "15:00:20", "15:00:30", "15:00:40", "15:00:50", "15:01:00", "15:01:" + (Math.random() * 10).toFixed(2)]
+                        // data: ["15:00:10", "15:00:20", "15:00:30", "15:00:40", "15:00:50", "15:01:00", "15:01:" + (Math.random() * 10).toFixed(2)]
+                        data: props.xlabels
                     }
                 });
                 fnIterativelyUpdateData();
@@ -60,7 +63,7 @@ export const EChartsComponent = () => {
                 option={{
                     xAxis: {
                         type: "category",
-                        data: ["15:00:10", "15:00:20", "15:00:30", "15:00:40", "15:00:50", "15:01:00", "15:01:10"]
+                        data: ["00:00:00", "00:00:10"]
                     },
                     yAxis: {
                         type: "value",
@@ -89,7 +92,7 @@ export const EChartsComponent = () => {
                     series: [
                         {
                             name: "ppm",
-                            data: [120, 200, 150, 80, 70, 110, 130],
+                            data: [1, 0],
                             type: "line",
                             smooth: true,
                             // markArea: {

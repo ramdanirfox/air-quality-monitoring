@@ -29,8 +29,8 @@ export const GoldenLayoutView: Component<any> = () => {
                 <KesimpulanComponent aqiCtx={SJXctx} />,
                 <PemetaanComponent aqiCtx={SJXctx} />,
                 <UdaraTerkiniComponent aqiCtx={SJXctx} />,
-                <LevelUdaraComponent jenis="CO2" />,
-                <LevelUdaraComponent jenis="LPG" />,
+                <LevelUdaraComponent jenis="CO2" aqiCtx={SJXctx} />,
+                <LevelUdaraComponent jenis="LPG" aqiCtx={SJXctx} />,
                 () => <YoutubeComponent />
             ],
             { useVirtualEventBinding: true }

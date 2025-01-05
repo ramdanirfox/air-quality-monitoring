@@ -59,7 +59,9 @@ export default function RiwayatComponent(props: IRiwayatCmpProps) {
   }
 
   const fnUpdateAQIData = (loc: AQILocationData) => {
-    AQIService.getRealtimeAirQuality(loc.name, (res) => {
+    const aqiData = props.aqiCtx?.ctx.aqiDataAll!;
+    const firstData = aqiData.val() && aqiData.val()[loc.name];
+    AQIService.getRealtimeAirQuality(loc.name, firstData && firstData.length ? firstData[0].period : "", (res) => {
       const ctxData = props.aqiCtx?.ctx.aqiUpdateAll.val();
       ctxData![loc.name] = res;
       props.aqiCtx?.ctx.aqiUpdateAll.set(JSON.parse(JSON.stringify(ctxData!)));
