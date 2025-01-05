@@ -42,17 +42,14 @@ export default function RiwayatComponent(props: IRiwayatCmpProps) {
 
   const fnEnumerateAQIValues = (locs: AQILocationResponse) => {
     locs.forEach((loc) => {
-      fnUpdateAQIChannel(loc);
-      const timerStop = createTimer(() => {
-        fnUpdateAQIChannel(loc);
-      }, timeoutSourceAccessor(), setInterval);
+      fnGetAQIData(loc);
     });
     // AQIService.getAirQuality(loc.name, (res) => {
       
     // });
   }
 
-  const fnUpdateAQIChannel = (loc: AQILocationData) => {
+  const fnGetAQIData = (loc: AQILocationData) => {
     AQIService.getAirQuality(loc.name, (res) => {
       const ctxData = props.aqiCtx?.ctx.aqiDataAll.val();
       ctxData![loc.name] = res;
@@ -61,8 +58,28 @@ export default function RiwayatComponent(props: IRiwayatCmpProps) {
     });
   }
 
+  const fnUpdateAQIData = (loc: AQILocationData) => {
+    AQIService.getRealtimeAirQuality(loc.name, (res) => {
+      const ctxData = props.aqiCtx?.ctx.aqiUpdateAll.val();
+      ctxData![loc.name] = res;
+      props.aqiCtx?.ctx.aqiUpdateAll.set(JSON.parse(JSON.stringify(ctxData!)));
+      // console.log("[CTX] Res", props.aqiCtx?.ctx.aqiDataAll.val());
+    });
+  }
+
   const fnUpdateSelectedLocation = (loc: AQILocationData) => {
-    props.aqiCtx?.ctx.aqiSelectedLocation.set(loc);
+    const ctxSelectedLoc = props.aqiCtx?.ctx.aqiSelectedLocation!;
+    if (ctxSelectedLoc.val()) {
+      ctxSelectedLoc.set(loc);
+      fnUpdateAQIData(loc);
+    }
+    else {
+      ctxSelectedLoc.set(loc);
+      fnUpdateAQIData(loc);
+      const timerStop = createTimer(() => {
+        fnUpdateAQIData(loc);
+      }, timeoutSourceAccessor(), setInterval);
+    }
   }
 
   const fnStop = () => {
@@ -144,11 +161,9 @@ export default function RiwayatComponent(props: IRiwayatCmpProps) {
         </For>
       </Show>
       <Dialog>
-        <Dialog.Trigger class="dialog__trigger w-full">
-          {/* <Button class="button w-full"> */}
+        {/* <Dialog.Trigger class="dialog__trigger w-full">
           <span class="pr-2"><AQIIconAddMore /></span> Tambah Lokasi<span class="pr-12"></span>
-          {/* </Button> */}
-        </Dialog.Trigger>
+        </Dialog.Trigger> */}
         <Dialog.Portal>
           <Dialog.Overlay class="dialog__overlay" />
           <div class="dialog__positioner">

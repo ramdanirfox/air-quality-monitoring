@@ -28,7 +28,7 @@ export const GoldenLayoutView: Component<any> = () => {
                 <RiwayatComponent aqiCtx={SJXctx} />,
                 <KesimpulanComponent aqiCtx={SJXctx} />,
                 <PemetaanComponent aqiCtx={SJXctx} />,
-                <UdaraTerkiniComponent />,
+                <UdaraTerkiniComponent aqiCtx={SJXctx} />,
                 <LevelUdaraComponent jenis="CO2" />,
                 <LevelUdaraComponent jenis="LPG" />,
                 () => <YoutubeComponent />

@@ -61,6 +61,22 @@ export const AQIService = {
             mutate, refetch, resource
         }
     },
+    getRealtimeAirQuality: function (locname: string, successCallback?: ((data: AQIQualityDataList) => any) | undefined): AQIAPIEvent {
+        const url = `${this.aqiCfg.baseUrl}/last_update${this.aqiCfg.baseUrl == "json" ? ".json" : ""}?location=${locname}`;
+        const [resource, { mutate, refetch }] = createFetch<any>(
+            url, {
+            method: this.aqiCfg.baseUrl == "json" ? "GET" : "POST"
+        }, {}, [
+            withCatchAll(),
+            withAggregation((a: any) => {
+                // randomizeValue
+                if (successCallback) { successCallback(a); }
+                return a;
+            })]);
+        return {
+            mutate, refetch, resource
+        }
+    },
     getLocations: function (successCallback?: ((data: AQILocationResponse) => any) | undefined): AQIAPIEvent {
         const url = `${this.aqiCfg.baseUrl}/list_location${this.aqiCfg.baseUrl == "json" ? ".json" : ""}`;
         const [resource, { mutate, refetch }] = createFetch<any>(

@@ -16,50 +16,53 @@ output :
 
 http://127.0.0.1:7010/first_data
 method : get
-params : ?location=nomaden		#(name from service list_location)
+params : ?location=nomaden    #(name from service list_location)
 output : 
-	[
-		{
-			"co2": 24.0,
-			"location": "nomaden",
-			"lpg": 49.0,
-			"period": "2024-12-31 12:36:10",
-			"timestamp_update": 0
-		},
-		{
-			"co2": 75.0,
-			"location": "nomaden",
-			"lpg": 12.0,
-			"period": "2024-12-31 12:36:00",
-			"timestamp_update": 0
-		}
-	]
+  [
+    {
+      "co2": 24.0,
+      "co": 24.0,
+      "location": "nomaden",
+      "lpg": 49.0,
+      "period": "2024-12-31 12:36:10",
+      "timestamp_update": 0
+    },
+    {
+      "co2": 75.0,
+      "co": 24.0,
+      "location": "nomaden",
+      "lpg": 12.0,
+      "period": "2024-12-31 12:36:00",
+      "timestamp_update": 0
+    }
+  ]
 
 
 
 
-http://127.0.0.1:7010/first_data
+http://127.0.0.1:7010/last_update
 method : post
 params : 
-	{
-	  "location": "nomaden",			#(name from service list_location)	
-	  "date": "2024-02-01 00:00:00"		#(last period from service first_data)
-	}
+  {
+    "location": "nomaden",      #(name from service list_location)  
+    "date": "2024-02-01 00:00:00"    #(last period from service first_data)
+  }
 output : 
-	[
-		{
-			"co2": 24.0,
-			"location": "nomaden",
-			"lpg": 49.0,
-			"period": "2024-12-31 12:36:10",
-			"timestamp_update": 0
-		},
-		{
-			"co2": 75.0,
-			"location": "nomaden",
-			"lpg": 12.0,
-			"period": "2024-12-31 12:36:00",
-			"timestamp_update": 0
-		}
-	]
-
+  [
+    {
+      "co2": 24.0,
+      "co": 24.0,
+      "location": "nomaden",
+      "lpg": 49.0,
+      "period": "2024-12-31 12:36:10",
+      "timestamp_update": 0
+    },
+    {
+      "co2": 75.0,
+      "co": 24.0,
+      "location": "nomaden",
+      "lpg": 12.0,
+      "period": "2024-12-31 12:36:00",
+      "timestamp_update": 0
+    }
+  ]
