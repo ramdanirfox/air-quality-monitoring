@@ -3,12 +3,8 @@
     "file": "assets/SJXContext-D9OqSdRv.js",
     "name": "SJXContext"
   },
-  "_index-CcFej8ia.css": {
-    "file": "assets/index-CcFej8ia.css",
-    "src": "_index-CcFej8ia.css"
-  },
-  "_index-fZXNgXya.js": {
-    "file": "assets/index-fZXNgXya.js",
+  "_index-BG_wEwLt.js": {
+    "file": "assets/index-BG_wEwLt.js",
     "name": "index",
     "isDynamicEntry": true,
     "imports": [
@@ -18,31 +14,35 @@
       "src/components/EChartsComponent.tsx"
     ],
     "css": [
-      "assets/index-CcFej8ia.css"
+      "assets/index-CFPIjS19.css"
     ]
   },
+  "_index-CFPIjS19.css": {
+    "file": "assets/index-CFPIjS19.css",
+    "src": "_index-CFPIjS19.css"
+  },
   "src/components/EChartsComponent.tsx": {
-    "file": "assets/EChartsComponent-Dri_4RWG.js",
+    "file": "assets/EChartsComponent-Bv192TgU.js",
     "name": "EChartsComponent",
     "src": "src/components/EChartsComponent.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_SJXContext-D9OqSdRv.js",
-      "_index-fZXNgXya.js"
+      "_index-BG_wEwLt.js"
     ]
   },
   "src/routes/index.tsx?pick=default&pick=$css": {
-    "file": "assets/index-oRQBwdDp.js",
+    "file": "assets/index-CWL75zGy.js",
     "name": "index",
     "src": "src/routes/index.tsx?pick=default&pick=$css",
     "isEntry": true,
     "imports": [
       "_SJXContext-D9OqSdRv.js",
-      "_index-fZXNgXya.js"
+      "_index-BG_wEwLt.js"
     ]
   },
   "virtual:$vinxi/handler/client": {
-    "file": "assets/client-g5catc3L.js",
+    "file": "assets/client-D_2-TT0q.js",
     "name": "client",
     "src": "virtual:$vinxi/handler/client",
     "isEntry": true,
