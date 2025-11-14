@@ -39,13 +39,13 @@ main {
   }
 }
 
-.lm_goldenlayout {
+section>.lm_goldenlayout {
   /* background-color: transparent !important; */
   background-color: transparent;
   /* backdrop-filter: blur(8px); */
 }
 
-.lm_content {
+section .lm_content {
   background-color: #00000044;
   border: none;
   border-radius: 8px;
@@ -53,7 +53,7 @@ main {
   backdrop-filter: blur(8px);
 }
 
-.lm_header .lm_tab {
+section .lm_header .lm_tab {
   background: #0004;
   border: 1px solid #0000;
   border-top-left-radius: 6px;
@@ -63,17 +63,17 @@ main {
   padding-right: 1.5rem; */
 }
 
-.lm_header .lm_tab.lm_active {
+section .lm_header .lm_tab.lm_active {
   box-shadow: none;
 }
 
-.lm-tab,
-.lm_controls {
+section .lm-tab,
+section .lm_controls {
   backdrop-filter: blur(8px);
   background-color: #00000044;
 }
 
-.lm_tab.lm_active {
+section .lm_tab.lm_active {
   color: #FFF;
   /* line-height: 1; */
   display: flex;
@@ -82,12 +82,12 @@ main {
   padding-bottom: 0 !important; */
 }
 
-.lm_header .lm_controls>* {
+section .lm_header .lm_controls>* {
   width: 1.2rem;
   height: 1.2rem;
 }
 
-.lm_header {
+section .lm_header {
   /* height: 2.35rem !important */
   display: flex;
   align-items: flex-end;
@@ -101,7 +101,7 @@ main {
 
 /* Golden Layout Fluid Animator */
 
-.lm_maximised .lm_header {
+section .lm_maximised .lm_header {
   background-color: transparent;
 }
 

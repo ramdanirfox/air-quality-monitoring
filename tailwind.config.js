@@ -6,7 +6,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'tampilan-awal': "url('images/background.jpg')",
+        'tampilan-awal': "url('/images/background.jpg')",
       }
     },
   },
