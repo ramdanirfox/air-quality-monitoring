@@ -13,7 +13,7 @@ export default defineConfig({
       crawlLinks: true,
       routes: ["/"]
     },
-    baseURL: process.argv.includes("dev") ? "/" : "/",
+    baseURL: process.argv.includes("dev") ? "/air-quality-monitoring" : "/air-quality-monitoring",
   },
   vite: ({ router }) => ({
     server: {
