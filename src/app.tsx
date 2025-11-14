@@ -15,7 +15,7 @@ import "./shared/styles/KobalteTextField.css";
 export default function App() {
   return (
     
-      <Router
+      <Router base="/air-quality-monitoring"
         root={props => (
           <SJXProvider count={1}>
             <MetaProvider>
